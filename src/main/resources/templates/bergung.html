@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bergung eintragen</title>
+    <style>
+        body { background-color: #2471a3; color: white; font-family: Arial, sans-serif; padding: 30px; }
+        a { color: white; }
+        .grid { display: grid; grid-template-columns: auto auto; gap: 10px 20px; align-items: center; width: fit-content; }
+        .grid label { margin: 0; }
+        input, select { padding: 6px 10px; background-color: #1a5276; color: white; border: 1px solid #aed6f1; width: 220px; }
+        hr { border-color: #aed6f1; margin: 16px 0; grid-column: span 2; width: 100%; }
+        .span2 { grid-column: span 2; color: rgba(255,255,255,0.8); margin: 0; }
+        button { background-color: #1a5276; color: white; border: none; padding: 8px 16px; cursor: pointer; margin-top: 10px; }
+        button:hover { background-color: #154360; }
+    </style>
+</head>
+<body>
+    <h1>Bergung eintragen</h1>
+    <form th:action="@{/bergung}" method="post">
+        <div class="grid">
+            <label>Geisternetz auswählen:</label>
+            <select name="netId">
+                <option th:each="net : ${nets}"
+                        th:value="${net.id}"
+                        th:text="${net.id} + ' | ' + ${net.geschaetzteGroesse} + ' | ' + ${net.latitude} + ', ' + ${net.longitude}">
+                </option>
+            </select>
+            <hr/>
+            <p class="span2">Ihre Daten (Pflichtfelder)</p>
+            <label>Name:</label> <input type="text" name="name" required/>
+            <label>Telefon:</label> <input type="text" name="phone" required/>
+        </div>
+        <button type="submit">Bergung eintragen</button>
+    </form>
+    <br/>
+    <a href="/">Zurück</a>
+</body>
+</html>

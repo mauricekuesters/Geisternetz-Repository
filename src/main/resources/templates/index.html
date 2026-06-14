@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ghost Net Fishing</title>
+    <style>
+        body { background-color: #2471a3; color: white; font-family: Arial, sans-serif; padding: 30px; }
+        a { color: white; }
+        nav { margin-bottom: 20px; }
+        nav a { margin-right: 10px; }
+        table { border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #aed6f1; padding: 8px 14px; text-align: left; }
+        th { background-color: #1a5276; }
+        button { background-color: #1a5276; color: white; border: none; padding: 6px 12px; cursor: pointer; }
+        button:hover { background-color: #154360; }
+    </style>
+</head>
+<body>
+    <h1>Ghost Net Fishing</h1>
+    <nav>
+        <a href="/melden">Geisternetz melden</a>
+        <a href="/bergung">Bergung eintragen</a>
+    </nav>
+
+    <h2>Alle Geisternetze</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+            <th>Größe</th>
+            <th>Status</th>
+            <th>Aktion</th>
+        </tr>
+        <tr th:each="net : ${nets}">
+            <td th:text="${net.id}"></td>
+            <td th:text="${net.latitude}"></td>
+            <td th:text="${net.longitude}"></td>
+            <td th:text="${net.geschaetzteGroesse}"></td>
+            <td th:text="${net.status}"></td>
+            <td>
+                <form th:action="@{/geborgen/{id}(id=${net.id})}" method="post">
+                    <button type="submit">Als geborgen melden</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Geisternetz melden</title>
+    <style>
+        body { background-color: #2471a3; color: white; font-family: Arial, sans-serif; padding: 30px; }
+        a { color: white; }
+        .grid { display: grid; grid-template-columns: auto auto; gap: 10px 20px; align-items: center; width: fit-content; }
+        .grid label { margin: 0; }
+        input { padding: 6px 10px; background-color: #1a5276; color: white; border: 1px solid #aed6f1; width: 220px; }
+        hr { border-color: #aed6f1; margin: 16px 0; width: 100%; grid-column: span 2; }
+        .span2 { grid-column: span 2; color: rgba(255,255,255,0.8); margin: 0; }
+        button { background-color: #1a5276; color: white; border: none; padding: 8px 16px; cursor: pointer; margin-top: 10px; }
+        button:hover { background-color: #154360; }
+    </style>
+</head>
+<body>
+    <h1>Geisternetz melden</h1>
+    <form th:action="@{/melden}" method="post">
+        <div class="grid">
+            <label>Latitude:</label> <input type="text" name="latitude" required/>
+            <label>Longitude:</label> <input type="text" name="longitude" required/>
+            <label>Geschätzte Größe:</label> <input type="text" name="geschaetzteGroesse" required/>
+            <hr/>
+            <p class="span2">Optional: Ihre Daten (können anonym bleiben)</p>
+            <label>Name:</label> <input type="text" name="name"/>
+            <label>Telefon:</label> <input type="text" name="phone"/>
+        </div>
+        <button type="submit">Melden</button>
+    </form>
+    <br/>
+    <a href="/">Zurück</a>
+</body>
+</html>
